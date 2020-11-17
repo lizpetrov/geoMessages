@@ -1,89 +1,235 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.0.2/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/8.0.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/8.0.2/firebase-database.js"></script>
+
     <script defer src="/__/firebase/8.0.2/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/8.0.2/firebase-functions.js"></script>
-    <script defer src="/__/firebase/8.0.2/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/8.0.2/firebase-storage.js"></script>
-    <script defer src="/__/firebase/8.0.2/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/8.0.2/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/8.0.2/firebase-performance.js"></script>
-    <!-- 
+    <!--
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
     -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=false"></script>
 
     <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+      body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 5% 20%; padding: 0; }
+      textarea {
+        resize: none;
+        width: 100%;
+        height: 200px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        padding: 10px 10px;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        outline: none;
       }
+      input[type=text] {
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        padding: 10px;
+        outline: none;
+        border: 1px solid rgba(0,0,0,0.87);
+      }
+
+      button{
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        text-align: center;
+        background: #039be5;
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        font-size: 15px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        width: 40%;
+        outline: none;
+        border: none;
+      }
+
+      #outer {
+        width:100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .lightText { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+
+      .notbold{
+          font-weight:normal
+      }​
+      .bold{
+          font-weight:bold
+      }​
+
+      .dontDisplay {
+        display: none
+      }
+
+      hr.solid {
+        border-top: 1px solid #bbb;
+      }
+
     </style>
+
+    <style type="text/css">
+          #map{ width: 100%;
+            height: 500px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+           }
+    </style>
+    <script defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADgC2J-9W64LXRzHO4pfSLpJFwIseivKs&callback=initMap">
+    </script>
+    <title>Send a Geomessage</title>
+
   </head>
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+
+    <p id="load" class="lightText">Loading&hellip;</p>
+
+    <h1>Hey there,</h1>
+        <p>Normal text messages are so 90s. Can we change them? Let's do an experiment - send me geo-located message, a <b><i>geomessage</b></i>. I will only be
+        able to see your message when I am within a block of the location you put below. </p>
+        <p>How will adding a new dimension to the
+        text message change how we interact with the world around us and with others? Will it lead to exploration, serendipidous discoveries, a closer bond?
+        </p>
+
+        <p>Let's find out,</p>
+        <p>Liz :)</p>
+
+        <br>
+        <hr class="solid">
+        <br>
+
+        <h2>To: <span class='notbold'>Liz</span></h2>
+
+        <h2>From: </h2>
+        <input type="text" id="name" name="name" placeholder="Name"><br><br>
+
+        <h2>Location: </h2>
+        <p>
+          I'll only be able to access your message within a block of the location below. Put it anywhere you want, ideally in a spot that is meaningful to you! <b><i>Please keep it in NYC.</i></b>
+        </p>
+        <p><i>Click on a location on the map to select it. Drag the marker to change location. Default: Penn Station</i></p>
+
+        <!--map div-->
+        <div id="map"></div>
+
+        <h2>Message: </h2>
+        <textarea type="text" id="message" name="message" placeholder="Anything! Ex: How are you? Quarentine hobbies? Something you found interesting lately? Favorite places in NYC? Any recs? On your bucketlist? Thoughts on this? What's on your mind? Personal story from the city? etc"></textarea><br><br>
+
+
+        <div hidden>
+          <input type="text" id="lat" readonly="yes"><br>
+          <input type="text" id="lng" readonly="yes">
+        </div>
+
+        <br>
+        <div id="outer">
+          <button onclick="sendMessage()">Send</button>
+        </div>
+
+        <div id="outer">
+          <p id="sentNotification" class="lightText"></p>
+        </div>
+
+        <script type="text/javascript" src="map.js"></script>
 
     <script>
+
+
       document.addEventListener('DOMContentLoaded', function() {
         const loadEl = document.querySelector('#load');
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
         // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
+        console.log(firebase)
         //
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
         try {
           let app = firebase.app();
           let features = [
-            'auth', 
-            'database', 
+        //    'auth',
+        //    'database',
             'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
+        //    'functions',
+        //    'messaging',
+        //    'storage',
+        //    'analytics',
+        //    'remoteConfig',
+        //    'performance',
           ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+          loadEl.textContent = '';
+          console.log(firebase)
+
+      //    var db = firebase.firestore();
         } catch (e) {
           console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+          loadEl.textContent = 'ERROR loading the Firebase SDK, try reloading.';
         }
       });
+
+      function sendMessage() {
+        const sentEl = document.querySelector('#sentNotification');
+        var lat = document.getElementById('lat').value;
+        var long = document.getElementById('lng').value;
+        var name = document.getElementById('name').value;
+        var message = document.getElementById('message').value;
+
+        if(message.trim() == "") {
+          console.log("NO MESSAGE")
+          sentEl.textContent = 'Make sure you include a message!';
+          return;
+        }
+
+        else if(name.trim() == "") {
+          console.log("NO NAME")
+          sentEl.textContent = 'Make sure you include your name!';
+          return;
+        }
+
+        sentEl.textContent = 'abt to attempt to save';
+
+        console.log("SAVING TO DATABASE...")
+        // save it to firebase!
+        // Add a new document in collection "cities"
+        var timestamp = new Date().toString()
+
+        console.log(firebase)
+
+        sentEl.textContent = 'Oops, something went wrong. This hiccups on iOS for some reason, this should work on desktop! Try using desktop. Coding is weird sometimes.';
+
+        firebase.firestore().collection("geoMessages").doc(name + "_" + message.substring(0, 8) + "_" + lat).set({
+            fromName: name,
+            geoLat: lat,
+            geoLong: long,
+            message: message,
+            timestamp: timestamp
+        })
+        .then(function() {
+            console.log("Document successfully written!");
+            sentEl.textContent = 'Sent message! Name: ' + name + ' Message: ' + message + ". Feel free to send another one!";
+            console.log("SENT MESSAGE!")
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+            sentEl.textContent = 'Oops, something went wrong. This hiccups on iOS for some reason, try accessing this on desktop? Coding is weird sometimes.';
+        });
+
+
+      }
+
     </script>
   </body>
 </html>
